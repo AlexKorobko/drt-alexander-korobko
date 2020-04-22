@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { CourseService } from "../services/courses/course.service";
 import { Course } from "../../types/course";
-import { MatDialog } from "@angular/material/dialog";
+import { MatDialog, MatDialogRef } from "@angular/material/dialog";
 import { CourseFormComponent } from "../components/course-form/course-form.component";
 
 @Component({
@@ -13,10 +13,11 @@ import { CourseFormComponent } from "../components/course-form/course-form.compo
 export class CourseListComponent implements OnInit {
 
   courses: Course[];
+  modal: MatDialogRef<CourseFormComponent>;
 
   constructor(
     private courseService: CourseService,
-    private dialog: MatDialog
+    public dialog: MatDialog
   ) {
   }
 
@@ -39,12 +40,11 @@ export class CourseListComponent implements OnInit {
     const index = this.courses.findIndex(c => c.id === id);
     if (index > -1) {
       const course = this.courses[index];
-      const modal = this.dialog.open(CourseFormComponent, {
+      this.modal = this.dialog.open(CourseFormComponent, {
         data: course,
         maxWidth: '400px'
       });
-
-      modal.afterClosed().subscribe(data => {
+      this.modal.afterClosed().subscribe(data => {
         if (data) {
           this.courses[index] = data;
         }
@@ -53,11 +53,10 @@ export class CourseListComponent implements OnInit {
   }
 
   addCourse() {
-    const modal = this.dialog.open(CourseFormComponent, {
+    this.modal = this.dialog.open(CourseFormComponent, {
       maxWidth: '400px'
     });
-
-    modal.afterClosed().subscribe(data => {
+    this.modal.afterClosed().subscribe(data => {
       if (data) {
         data.id = this.courses.length + 1;
         this.courses.push(data);
