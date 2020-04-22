@@ -1,0 +1,21 @@
+<div class="mx-3">
+  <div class="mb-2">
+    <button (click)="addCourse()" type="button" class="btn btn-primary">Create New Course</button>
+  </div>
+  <table *ngIf="courses" class="table">
+    <thead class="thead-light">
+    <tr>
+      <th>Title</th>
+      <th>Duration</th>
+      <th>Duration Unit</th>
+      <th>Description</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <ng-template ngFor let-course [ngForOf]="courses">
+      <app-course [course]="course" (remove)="onRemoveCourse($event)" (edit)="onEditCourse($event)"></app-course>
+    </ng-template>
+    </tbody>
+  </table>
+</div>

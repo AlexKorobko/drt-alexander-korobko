@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,6 +11,12 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { AboutComponent } from './about/about.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CourseListComponent } from './course-list/course-list.component';
+import { CourseComponent } from './components/course/course.component';
+import { HttpClientModule } from "@angular/common/http";
+import { CourseFormComponent } from './components/course-form/course-form.component';
+import { MaterialModule } from "./material-module";
+import { ReactiveFormsModule } from "@angular/forms";
 
 
 @NgModule({
@@ -20,12 +25,21 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NavbarComponent,
     WelcomeComponent,
     AboutComponent,
+    CourseListComponent,
+    CourseComponent,
+    CourseFormComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    AlertModule
+    AlertModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    MaterialModule
+  ],
+  entryComponents: [
+    CourseFormComponent
   ],
   bootstrap: [AppComponent]
 })

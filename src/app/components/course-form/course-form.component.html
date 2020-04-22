@@ -1,0 +1,33 @@
+<h1 mat-dialog-title>Course</h1>
+<div mat-dialog-content>
+  <form [formGroup]="form">
+    <mat-form-field class="full-width">
+      <mat-label>Title</mat-label>
+      <input matInput
+             placeholder="Title"
+             formControlName="title">
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>Duration</mat-label>
+      <input matInput
+             placeholder="Duration"
+             formControlName="duration">
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>Duration Unit</mat-label>
+      <input matInput
+             placeholder="Duration Unit"
+             formControlName="duration-unit">
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>Description</mat-label>
+      <input matInput
+             placeholder="Description"
+             formControlName="description">
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button (click)="onSave()">Save</button>
+</div>
